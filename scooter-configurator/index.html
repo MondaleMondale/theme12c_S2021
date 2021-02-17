@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .svg_container{
+            width:90vmin;
+            border: .5px solid grey;
+        }
+        .menu{
+            width:90vmin;
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+        }
+        img{
+
+            width:100%;
+            border: .5px solid grey;
+        }
+        /* main{
+            height: 20vmin;
+
+        } */
+    </style>
+</head>
+<body>
+      <!-- <main>  -->
+    <section class="svg_container">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" viewBox="0 0 640 640">
+            
+            <image id="wheel" href="" />
+            <image id="fork" href="" />
+            <image id="bar" href=""  />
+            <image id="clamp" href=""  />
+            <image id="headset" href=""  />
+            <image id="grips" href="" />
+            <image id="deck" href=""  />
+            
+        </svg>
+    </section>
+    <section class="menu">
+        <img class="wheel" src="01-wheels/AO Quadrum wheel green silver.png" />
+        <img class="fork" src="02-forks/Addict Relentless Fork Green.png" />
+        <img class="bar" src="03-bars/Aztek DaVinci bar chrome.png"  />
+        <img class="clamp" src="04-clamps/Addict SCS Green.png"  />
+        <img class="headset" src="05-headsets/Core Headset Neo.png"  />
+        <img class="grips" src="06-grips/Addict Grips 2017 Black.png" />
+        <img class="deck" src="07-boards/Addict Deck Red.png"  />  
+
+
+
+        <img class="wheel" src="01-wheels/Aztek_Iris_Wheel_110_Black_Bronze.png" />
+        <img class="fork" src="02-forks/Addict Relentless Fork Red.png" />
+        <img class="bar" src="03-bars/Aztek DaVinci. bar black.png"  />
+        <img class="clamp" src="04-clamps/Apex Lite SCS Clamp Black.png"  />
+        <img class="headset" src="05-headsets/Ethic Headset neo chrome.png"  />
+        <img class="grips" src="06-grips/Addict Grips Fluro Orange.png" />
+        <img class="deck" src="07-boards/AO Sachem V2 Deck Burntpipe.png"  />  
+        
+        
+        
+        <img class="wheel" src="01-wheels/Blunt_Full_Core_Wheel_110_Neochrome.png" />
+        <img class="fork" src="02-forks/Apex Jesse Fork.png" />
+        <img class="bar" src="03-bars/Aztek Oddsey Alu Bars Red.png"  />
+        <img class="clamp" src="04-clamps/Apex Lite SCS Clamp Gold.png"  />
+        <img class="headset" src="05-headsets/tilt headset moss.png"  />
+        <img class="grips" src="06-grips/Addict Grips White.png" />
+        <img class="deck" src="07-boards/Aztek FountainFive Deck Raw.png"  />  
+    </section>
+<!-- </main> -->
+   <script>
+        document.addEventListener("DOMContentLoaded", start);
+        function start(){
+            document.querySelectorAll("img").forEach( eachImg =>{
+                eachImg.addEventListener("click",imgClick);
+
+            })
+
+
+        }
+        function imgClick(){
+            console.log("klik",this.src);
+            document.querySelector(`#${this.getAttribute("class")}`).setAttribute("href" , this.src);
+
+
+        }
+
+
+
+
+    </script>
+</body>
+</html>

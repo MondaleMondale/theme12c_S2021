@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        path {
+            /* cursor: pointer; */
+            fill: white;
+            /* stroke: blue; */
+            stroke-width: 10px;
+            mix-blend-mode:saturation;
+        }
+
+        .RGBContainer {
+
+            width: 10vw;
+            height: 10vw;
+            border: .5px black solid;
+       }
+
+        img{
+
+            width:100%;
+        }
+        .images_container{
+
+            display:grid;
+
+        }
+        .SVGContainer,.PNGContainer{
+            grid-area:1/1;
+
+        }
+        
+    </style>
+</head>
+
+<body>
+    <section class="images_container">
+        
+        <section class="PNGContainer"><img src="transparant_shoe.png" alt=""></section>
+        <section class="SVGContainer"></section>
+    </section>
+    <section class="colorPicker">
+        <section class="slidecontainer">
+            <input type="range" min="0" max="255" value="127" class="slider" id="r-slider">
+            <input type="range" min="0" max="255" value="127" class="slider" id="g-slider">
+            <input type="range" min="0" max="255" value="127" class="slider" id="b-slider">
+        </section>
+        <section>
+            <div class="RGBContainer">
+
+            </div>
+
+
+        </section>
+
+    </section>
+    <script>
+        let currentChosenPart;
+        let prevfill;
+        document.addEventListener("DOMContentLoaded", start);
+
+        async function start() {
+            let response = await fetch("Future-Rider-Play-On-Trainers-whole-thing_smaller-01.svg");
+            let mySvgData = await response.text();
+            document.querySelector(".SVGContainer").innerHTML = mySvgData;
+            startManipulatingTheSvg();
+
+            sliderHandler();
+            const slider = document.querySelector("#r-slider");
+            document.querySelectorAll(".slider").forEach(eachSlider => {
+                eachSlider.addEventListener("input", sliderHandler);
+            })
+        }
+
+        function startManipulatingTheSvg() {
+            document.querySelectorAll("path").forEach(eachPath => {
+
+                //                eachPath.style.fill = "grey";
+                eachPath.addEventListener("click", pathClick);
+                eachPath.addEventListener("mouseover", pathOver);
+                eachPath.addEventListener("mouseout", pathOut);
+            })
+        }
+
+        function pathClick() {
+            // console.log(this);
+            currentChosenPart = this;
+            sliderHandler();
+            prevfill = document.querySelector(".RGBContainer").style.backgroundColor;
+
+
+        }
+
+
+        function pathOver() {
+            prevfill = this.style.fill ;
+            this.style.fill = document.querySelector(".RGBContainer").style.backgroundColor;
+
+        }
+
+        function pathOut() {
+            this.style.fill = prevfill;
+
+
+        }
+
+        function sliderHandler() {
+            document.querySelector(".RGBContainer").style.backgroundColor = `rgb(${document.querySelector("#r-slider").value},${document.querySelector("#g-slider").value},${document.querySelector("#b-slider").value})`;
+            console.log("currentChosenPart", currentChosenPart);
+            if (currentChosenPart != undefined) {
+                currentChosenPart.style.fill = document.querySelector(".RGBContainer").style.backgroundColor;
+            }
+        }
+    </script>
+</body></html>
