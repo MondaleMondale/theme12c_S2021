@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        path {
+            fill: yellowgreen;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .images_container {
+            width: 50vw;
+            display: grid;
+
+        }
+
+        .SVGContainer,
+        .BGContainer,
+        .OLContainer {
+            grid-area: 1/1;
+            
+        }
+
+        /* .BG{
+            position:absolute;
+        }
+        .OL {position: absolute;}
+        .SVGContainer{
+            position: absolute;
+            width:100%;
+        } */
+    </style>
+</head>
+
+<body>
+    <section class="images_container">
+        
+        <div class="BGContainer"><img class="BG" src="background.png" alt=""></div>
+        <div class="SVGContainer"></div>
+        <div class="OLContainer"><img class="OL" src="overlay.png" alt=""></div>
+    </section>
+    <section class="colorPicker">
+        <div class="slidecontainer">
+            <input type="range" min="0" max="255" value="68" class="slider" id="r-slider">
+            <input type="range" min="0" max="255" value="165" class="slider" id="g-slider">
+            <input type="range" min="0" max="255" value="22" class="slider" id="b-slider">
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        async function start() {
+            let response = await fetch("70002WOOFitHeadphonesGolden_1200x1200-01.svg");
+            let mySvgData = await response.text();
+            document.querySelector(".SVGContainer").innerHTML = mySvgData;
+            startManipulatingTheSvg();
+
+
+        }
+        function startManipulatingTheSvg() {
+            document.querySelectorAll(".slider").forEach(eachSlider => {
+                eachSlider.addEventListener("input", sliderHandler);
+            })
+
+        }
+
+        function sliderHandler() {
+            console.log("Holy cow");
+
+            document.querySelectorAll("path").forEach(each => each.style.fill = `rgb(${document.querySelector("#r-slider").value},${document.querySelector("#g-slider").value},${document.querySelector("#b-slider").value})`);
+            // console.log("currentChosenPart", currentChosenPart);
+            // if (currentChosenPart != undefined) {
+            //     currentChosenPart.style.fill = document.querySelector(".RGBContainer").style.backgroundColor;
+            // }
+        }
+
+
+    </script>
+</body>
+
+</html>
